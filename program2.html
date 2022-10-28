@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Program 2</title>
+    <link rel="stylesheet" href="program2.css" />
+    <script src="program2.js" defer></script>
+  </head>
+  <body>
+    <div id="score-board">
+      <h2 id="lives">Lives left: 3</h2>
+      <h2 id="guesses"></h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th colspan="7">
+              <h3>GUESS SCOREBOARD</h3>
+            </th>
+          </tr>
+
+          <tr>
+            <th>Game #</th>
+            <th>1</th>
+            <th>2</th>
+            <th>3</th>
+            <th>4</th>
+            <th>5</th>
+          </tr>
+        </thead>
+
+        <tbody id="tbody">
+          <tr>
+            <td id="game-number-1">1</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2 id="status">Score 3 more to win!</h2>
+    </div>
+
+    <div id="bottom">
+      <h1>Pick A Number</h1>
+      <div id="user-controls">
+        <div>
+          <button class="number-btn" id="btn1" onclick="setChoice(1)">1</button>
+          <button class="number-btn" id="btn2" onclick="setChoice(2)">2</button>
+          <button class="number-btn" id="btn3" onclick="setChoice(3)">3</button>
+        </div>
+        <div>
+          <button class="number-btn" id="btn4" onclick="setChoice(4)">4</button>
+          <button class="number-btn" id="btn5" onclick="setChoice(5)">5</button>
+          <button class="number-btn" id="btn6" onclick="setChoice(6)">6</button>
+        </div>
+      </div>
+      <button id="submit-btn">Submit choice</button>
+    </div>
+  </body>
+</html>

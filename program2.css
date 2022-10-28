@@ -1,0 +1,100 @@
+table {
+  font-size: 30px;
+  border: solid;
+}
+table,
+tr,
+td,
+th {
+  border: solid;
+}
+input,
+select {
+  font-size: 30px;
+}
+
+td,
+th {
+  height: 40px;
+  width: 100px;
+}
+
+button {
+  width: 80px;
+}
+
+body {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #178a94;
+}
+
+body div {
+  margin: 20px;
+}
+
+#bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #ee8080;
+  border: 2px;
+  border-style: solid;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+#score-board {
+  border: 2px;
+  border-style: solid;
+  border-radius: 5px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #bfd8d1;
+}
+
+#user-controls {
+  border: 2px;
+  border-style: solid;
+  border-radius: 5px;
+  padding: 10px;
+  margin-top: 0;
+}
+
+#user-controls div {
+  display: flex;
+  flex-direction: row;
+  margin: 10px;
+  justify-content: space-around;
+  width: 300px;
+}
+
+#submit-btn {
+  width: 200px;
+  padding: 10px;
+}
+
+#tbody tr td {
+  text-align: center;
+}
+
+#play-again {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  width: 250px;
+
+  border: 2px;
+  border-style: solid;
+  border-radius: 5px;
+  background-color: #bfd8d1;
+}
+
+.number-btn {
+  background-color: white;
+}
