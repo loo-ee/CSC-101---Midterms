@@ -1,0 +1,88 @@
+p,
+h3,
+h4 {
+  margin: 0;
+}
+
+#home-page {
+  padding: 10px;
+  width: 500px;
+  border: 2px;
+  border-style: solid;
+  border-radius: 5px;
+}
+
+#choice-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: scroll;
+  height: 600px;
+}
+
+.choice {
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+  border: 2px;
+  border-style: solid;
+  border-radius: 5px;
+}
+
+.thmb {
+  width: 100px;
+  height: 160px;
+  align-self: center;
+}
+
+#choice-container div {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.item-info {
+  align-self: center;
+  padding: 5px;
+  margin-left: 5px;
+  width: 250px;
+}
+
+.item-info-top h4 {
+  width: 90%;
+  padding: 5px;
+  border: 2px;
+  border-style: solid;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.item-info-bot {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.item-info-bot h3 {
+  width: 100px;
+  padding: 5px;
+  border: 2px;
+  border-style: solid;
+  border-radius: 5px;
+
+  text-align: center;
+  margin-left: -5px;
+}
+
+.select-btn {
+  font-size: 15px;
+  padding: 5px;
+  width: 100px;
+  height: 35px;
+  margin-right: 5px;
+}
+
+#random-img {
+  width: 100px;
+  height: 100px;
+}

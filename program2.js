@@ -16,6 +16,10 @@ const setChoice = (input) => {
   choice = input
 }
 
+const setDieSide = () => {
+  numToGuess = Math.round(1 + Math.random() * (6 - 1));
+}
+
 const checkResult = () => {
   console.log(choice)
   console.log(numToGuess)
@@ -28,10 +32,10 @@ const checkResult = () => {
   if (numToGuess === choice) {
     correctGuess++;
     setDieSide();
-    tbody.children[currentGameRow - 1].children[tryIndex].innerHTML = '&#10004;'
+    tbody.children[currentGameRow - 1].children[tryIndex].innerHTML = '&#10004;';
   } else {
     lives--;
-    tbody.children[currentGameRow - 1].children[tryIndex].innerHTML = '&#10006;'
+    tbody.children[currentGameRow - 1].children[tryIndex].innerHTML = '&#10006;';
   }
 
   livesDisplay.innerText = `Lives left: ${lives}`;
@@ -103,10 +107,6 @@ const addGameRow = () => {
 const closePlayAgain = () => {
   const playAgainElement = document.getElementById('play-again');
   bottom.removeChild(playAgainElement);
-}
-
-const setDieSide = () => {
-  numToGuess = Math.round(1 + Math.random() * (6 - 1));
 }
 
 submitBtn.addEventListener('click', () => {
