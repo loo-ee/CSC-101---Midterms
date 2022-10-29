@@ -253,7 +253,7 @@ body {
   background-color: aliceblue;
 }
 
-.payment-result-header {
+#payment-result-header {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -264,5 +264,13 @@ body {
   margin-left: 10px;
 }
 
+.success {
+  flex-direction: row;
+}
+
 #receipt-btn {
+  font-size: 30px;
+  align-self: flex-end;
+  width: 250px;
+  padding: 10px;
 }
