@@ -4,9 +4,14 @@ h4 {
   margin: 0;
 }
 
+hr {
+  width: 100%;
+}
+
 body {
   display: flex;
   flex-direction: row;
+  justify-content: space-around;
 }
 
 #home-page {
@@ -27,8 +32,10 @@ body {
 #payment-page {
   width: 1000px;
   display: flex;
-  align-items: flex-start;
-  justify-content: center;
+  flex-direction: column;
+  /* align-items: center; */
+  /* justify-content: center; */
+  z-index: 1;
 }
 
 #banner {
@@ -115,7 +122,7 @@ body {
 #checkout {
   width: 400px;
   height: 50px;
-  position: absolute;
+  position: relative;
   background-color: aqua;
 
   display: flex;
@@ -124,7 +131,7 @@ body {
   justify-content: center;
 
   bottom: 35px;
-  left: 80px;
+  left: 40px;
 
   border-radius: 10px;
 }
@@ -133,27 +140,28 @@ body {
   margin-left: 20px;
   padding: 5px;
 }
-
+/* 
 #payment-page {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: baseline;
-}
+} */
 
 #payment {
   display: flex;
   flex-direction: column;
   position: absolute;
   top: 80px;
-  right: 350px;
-  width: 400px;
+  right: 200px;
+  width: 700px;
   height: 600px;
 
   background-color: aqua;
   border: 2px;
   border-style: solid;
   border-radius: 10px;
+  z-index: 10;
 }
 
 #payment-header {
@@ -161,9 +169,28 @@ body {
   flex-direction: row;
   margin-left: 110px;
   margin-top: 20px;
+  justify-content: space-between;
 }
 
 #banner-logo {
-  width: 100px;
+  width: 70px;
   border-radius: 50%;
+  margin-left: -70px;
+  /* margin-right: 20px; */
+}
+
+#banner-text {
+  margin-right: 50px;
+  margin-left: -250px;
+}
+
+#exit-payment-btn {
+  background-color: transparent;
+  border: 0;
+  font-size: 30px;
+  margin-right: 30px;
+}
+
+#book-to-buy {
+  width: 200px;
 }
