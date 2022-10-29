@@ -346,3 +346,7 @@ body {
 #book-preview-img {
   width: 500px;
 }
+
+#low-balance-warning {
+  font-size: 25px;
+}

@@ -16,7 +16,7 @@ const items = [
   },
   {
     title: 'HTML and CSS: Design and Build Websites 1st Edition',
-    price: '13.90',
+    price: 13.90,
     source: 'html-css.jpg',
     availability: 'In Stock',
     author: 'Jon Duckett',
@@ -26,7 +26,7 @@ const items = [
   {
     title: `JavaScript: The Definitive Guide: Master the World's Most-Used
             Programming Language 7th Edition`,
-    price: '20.12',
+    price: 20.12,
     source: 'javascript.jpg',
     availability: 'In Stock',
     author: 'David Flanagan',
@@ -195,7 +195,7 @@ const processPayment = () => {
   } else {
     paymentResult.innerHTML =
       `<div id="payment-result-header">
-        <h1>You have insufficient balance!</h1>
+        <h1 id="low-balance-warning">You have insufficient balance!</h1>
         <img id="payment-result-logo" src="warning.png" />
       </div>
       <h2>Please Try Again</h2>`;
