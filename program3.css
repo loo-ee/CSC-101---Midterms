@@ -168,8 +168,8 @@ body {
   width: 700px;
   height: 750px;
 
-  background-color: #a8dadc;
-  border: 2px;
+  background-color: #457b9d;
+  border: 5px;
   border-style: solid;
   border-radius: 10px;
 }
@@ -186,6 +186,7 @@ body {
 #payment-body {
   padding: 20px;
   overflow-y: scroll;
+  background-color: #457b9d;
 }
 
 #banner-logo {
@@ -196,7 +197,8 @@ body {
 
 #banner-text {
   margin-right: 50px;
-  margin-left: -250px;
+  margin-left: -200px;
+  color: #f1faee;
 }
 
 #exit-payment-btn {
@@ -221,6 +223,7 @@ body {
   margin: 20px;
   padding: 10px;
   text-align: center;
+  background-color: #a8dadc;
 
   border: 2px;
   border-style: solid;
@@ -233,6 +236,7 @@ body {
   justify-content: center;
   align-items: center;
   margin-top: 30px;
+  background-color: #a8dadc;
 
   border: 2px;
   border-style: solid;
@@ -245,7 +249,7 @@ body {
 }
 
 #input-label {
-  font-size: 35px;
+  font-size: 18px;
 }
 
 #money-input-field {
@@ -294,13 +298,41 @@ body {
   padding: 10px;
 }
 
-#book-preview-top {
+#book-preview {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#book-preview-top {
+  display: flex;
+  flex-direction: row;
   align-items: center;
   padding: 20px;
 }
 
-#book-preview-png {
+#book-preview-bot {
+  margin-left: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.book-details {
+  width: 300px;
+  border: 2px;
+  border-style: solid;
+  border-radius: 5px;
+  padding: 5px;
+  margin-bottom: 20px;
+}
+
+#book-preview-title {
+  max-height: 50px;
+  margin-bottom: 30px;
+}
+
+#book-preview-img {
   width: 500px;
 }

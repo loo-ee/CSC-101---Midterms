@@ -7,24 +7,40 @@ const items = [
   {
     title: `Python Crash Course, 2nd Edition: A Hands-On, Project-Based
             Introduction to Programming 2nd Edition`,
-    price: '14.80',
-    source: 'python-crash-course.jpg'
+    price: 14.80,
+    source: 'python-crash-course.jpg',
+    availability: 'Limited',
+    author: 'Eric Matthes',
+    ratings: '7, 630',
+    genre: 'python'
   },
   {
     title: 'HTML and CSS: Design and Build Websites 1st Edition',
     price: '13.90',
-    source: 'html-css.jpg'
+    source: 'html-css.jpg',
+    availability: 'In Stock',
+    author: 'Jon Duckett',
+    ratings: '4, 162',
+    genre: 'html, css'
   },
   {
     title: `JavaScript: The Definitive Guide: Master the World's Most-Used
             Programming Language 7th Edition`,
     price: '20.12',
-    source: 'javascript.jpg'
+    source: 'javascript.jpg',
+    availability: 'In Stock',
+    author: 'David Flanagan',
+    ratings: '1, 094',
+    genre: 'javascript'
   },
   {
     title: 'Let the app decide for me',
     price: '???',
-    source: 'red-random.png'
+    source: 'red-random.png',
+    availability: '???',
+    author: '???',
+    ratings: '???',
+    genre: '???'
   }
 ]
 
@@ -57,9 +73,37 @@ const selectButtons = document.querySelectorAll('.select-btn');
 selectButtons.forEach((button) => {
   button.addEventListener('click', () => {
     checkIfPressed();
+    showPreview();
     showCheckout();
   })
 })
+
+const showPreview = () => {
+  const book = items[selectedItem - 1];
+  const title = document.getElementById('book-preview-title');
+  const image = document.getElementById('book-preview-img');
+  const details = document.getElementById('book-preview-bot');
+
+  title.innerText = book.title;
+  title.style.fontSize = '20px'
+
+  image.src = book.source;
+  image.style.width = '400px';
+  image.style.maxHeight = '500px';
+
+  details.innerHTML =
+    `
+    <div class="book-details-half">
+      <h4 class="book-details">Price: $${book.price}</h4>
+      <h4 class="book-details">Status: ${book.availability}</h4>
+    </div>
+    <div class="book-details-half">
+      <h4 class="book-details">Author: ${book.author}</h4>
+      <h4 class="book-details">Genre: ${book.genre}</h4>
+      <h4 class="book-details">Ratings: ${book.ratings}</h4>
+    </div>
+    `;
+}
 
 const setSelectedItem = (itemNumber) => {
   selectedItem = itemNumber;
@@ -96,7 +140,7 @@ const checkOut = () => {
       <h2 id="banner-text">Louie's Startup</h2>
       <button id="exit-payment-btn" onclick="removePayment()">&#10060;</button>
     </div> 
-    <hr />
+    <div style="height: 5px; background-color: #A8DADC;"></div>
     <div id="payment-body">
       <div id="book-details">
         <img id="book-to-buy" src="${book.source}" />
