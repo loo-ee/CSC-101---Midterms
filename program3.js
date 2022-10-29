@@ -7,18 +7,18 @@ const items = [
   {
     title: `Python Crash Course, 2nd Edition: A Hands-On, Project-Based
             Introduction to Programming 2nd Edition`,
-    price: '$14.80',
+    price: '14.80',
     source: 'python-crash-course.jpg'
   },
   {
     title: 'HTML and CSS: Design and Build Websites 1st Edition',
-    price: '$13.90',
+    price: '13.90',
     source: 'html-css.jpg'
   },
   {
     title: `JavaScript: The Definitive Guide: Master the World's Most-Used
             Programming Language 7th Edition`,
-    price: '$20.12',
+    price: '20.12',
     source: 'javascript.jpg'
   },
   {
@@ -42,7 +42,7 @@ for (let i = 0; i < items.length; i++) {
           <h4>${items[i].title}</h4>
         </div>
         <div class="item-info-bot">
-          <h3>${items[i].price}</h3>
+          <h3>$${items[i].price}</h3>
           <button class="select-btn" onclick="setSelectedItem(${i + 1})">
             Select
           </button>
@@ -83,7 +83,7 @@ const showCheckout = () => {
 const checkOut = () => {
   const foundPayment = document.getElementById('payment');
   const paymentElement = document.createElement('div');
-  const book = document.getElementById(`choice${selectedItem}`);
+  const book = items[selectedItem - 1];
 
   if (foundPayment) return;
 
@@ -95,13 +95,64 @@ const checkOut = () => {
         <button id="exit-payment-btn" onclick="removePayment()">&#10060;</button>
       </div> 
         <hr />
-      <div id="body">
+      <div id="payment-body">
         <div id="book-details">
-          <img id="book-to-buy" src="${items[selectedItem - 1].source}" />
+          <img id="book-to-buy" src="${book.source}" />
+          <div id="book-to-buy-details">
+            <h1>${book.title}</h1>
+            <h2>$${book.price}</h2>
+          </div>
+        </div>
+        <div id="payment-method">
+          <div id="money-input">
+            <label id="input-label">Input Money: </label>
+            <input type="number" id="money-input-field" />
+          </div>
+          <button id="submit-money-btn" onclick="processPayment()">Buy</button>
         </div>
     </div>`;
 
   paymentPage.append(paymentElement);
+}
+
+const processPayment = () => {
+  const moneyPaid = Number(document.getElementById('money-input-field').value);
+  const book = items[selectedItem - 1];
+  const sufficientBalance = moneyPaid >= Number(book.price);
+  const paymentResult = document.createElement('div');
+  const paymentBody = document.getElementById('payment-body');
+  const paymentMethod = document.getElementById('payment-method');
+  const foundPaymentResult = document.getElementById('payment-result');
+
+  if (foundPaymentResult) paymentBody.removeChild(foundPaymentResult);
+
+  paymentResult.id = 'payment-result';
+
+  if (sufficientBalance) {
+
+    paymentResult.innerHTML =
+      `<div id="payment-details">
+        <div id="payment-result-header">
+          <h1>Payment Received!</h1>
+          <img id="payment-result-logo" src="check.png" />
+        </div>
+        <h2>Amount Due: $${book.price}</h2>
+        <h2>Amount Paid: $${moneyPaid}</h2>
+        <h2>Change: $${Math.round(100 * (moneyPaid - Number(book.price))) / 100}</h2>
+      </>
+      <button id="receipt-btn">Print Receipt</button>`;
+
+    paymentBody.removeChild(paymentMethod);
+  } else {
+    paymentResult.innerHTML =
+      `<div id="payment-result-header">
+        <h1>You have insufficient balance!</h1>
+        <img id="payment-result-logo" src="warning.png" />
+      </div>
+      <h2>Please Try Again</h2>`;
+  }
+
+  paymentBody.append(paymentResult);
 }
 
 const removePayment = () => {
