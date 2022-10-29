@@ -154,9 +154,12 @@ body {
   border-radius: 10px;
 }
 
-#checkOutButton {
+#checkout-button {
   margin-left: 20px;
   padding: 5px;
+  background-color: #457b9d;
+  color: #f1faee;
+  border-radius: 5px;
 }
 
 #payment {
@@ -260,6 +263,9 @@ body {
   padding: 10px;
   font-size: 30px;
   width: 180px;
+  background-color: #457b9d;
+  color: #f1faee;
+  border-radius: 5px;
 }
 
 #payment-result {
@@ -296,6 +302,9 @@ body {
   align-self: flex-end;
   width: 250px;
   padding: 10px;
+  background-color: #457b9d;
+  color: #f1faee;
+  border-radius: 5px;
 }
 
 #book-preview {

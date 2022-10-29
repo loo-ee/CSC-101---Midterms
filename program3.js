@@ -119,7 +119,7 @@ const showCheckout = () => {
   checkOutElement.id = 'checkout';
   checkOutElement.innerHTML =
     `<h3>Proceed to Payment</h3>
-    <button id="checkOutButton" onclick="checkOut()">Checkout</button>`;
+    <button id="checkout-button" onclick="checkOut()">Checkout</button>`;
 
   homePage.append(checkOutElement);
 }
