@@ -81,6 +81,8 @@ const showCheckout = () => {
 }
 
 const checkOut = () => {
+  if (selectedItem == 4) selectedItem = Math.round(1 + Math.random() * (3 - 1));
+
   const foundPayment = document.getElementById('payment');
   const paymentElement = document.createElement('div');
   const book = items[selectedItem - 1];
@@ -251,8 +253,8 @@ const removePayment = () => {
 
 const removeSelectedItem = () => {
   selectButtons.forEach((button) => {
-    button.style.backgroundColor = 'white';
-    button.style.color = 'black';
+    button.style.backgroundColor = '#457B9D';
+    button.style.color = '#F1FAEE';
   })
   selectedItem = null;
 }
@@ -262,11 +264,9 @@ const checkIfPressed = () => {
   for (let i = 1; i <= selectButtons.length; i++) {
     if (i == selectedItem) {
       selectButtons[i - 1].style.backgroundColor = 'green';
-      selectButtons[i - 1].style.color = 'white';
     }
     else {
-      selectButtons[i - 1].style.backgroundColor = 'white';
-      selectButtons[i - 1].style.color = 'black';
+      selectButtons[i - 1].style.backgroundColor = '#457B9D';
     }
   }
 }
