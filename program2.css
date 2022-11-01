@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
+
+* {
+  font-family: 'Roboto Mono', monospace;
+}
+
 table {
   font-size: 30px;
   border: solid;
@@ -34,12 +40,55 @@ body div {
   margin: 20px;
 }
 
-#bottom {
+#right-container {
+  border: 5px;
+  border-style: solid;
+  border-radius: 5px;
+  background-color: rgb(191, 216, 209);
+
+  padding: 20px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#right-top {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 400px;
+}
+
+#dice {
+  width: 100px;
+}
+
+#dice-result-label {
+  text-align: center;
+}
+
+.shake {
+  animation: shake 0.5s infinite;
+}
+@keyframes shake {
+  0% {
+    transform: rotate(8deg);
+  }
+  50% {
+    transform: rotate(-8deg);
+  }
+  100% {
+    transform: rotate(8deg);
+  }
+}
+
+#right-bottom {
   display: flex;
   flex-direction: column;
   align-items: center;
   background-color: #ee8080;
-  border: 2px;
+  border: 5px;
   border-style: solid;
   border-radius: 5px;
   padding: 10px;

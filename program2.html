@@ -46,21 +46,44 @@
       <h2 id="status">Score 3 more to win!</h2>
     </div>
 
-    <div id="bottom">
-      <h1>Pick A Number</h1>
-      <div id="user-controls">
-        <div>
-          <button class="number-btn" id="btn1" onclick="setChoice(1)">1</button>
-          <button class="number-btn" id="btn2" onclick="setChoice(2)">2</button>
-          <button class="number-btn" id="btn3" onclick="setChoice(3)">3</button>
-        </div>
-        <div>
-          <button class="number-btn" id="btn4" onclick="setChoice(4)">4</button>
-          <button class="number-btn" id="btn5" onclick="setChoice(5)">5</button>
-          <button class="number-btn" id="btn6" onclick="setChoice(6)">6</button>
+    <div id="right">
+      <div id="right-container">
+        <div id="right-top">
+          <div id="die-container">
+            <img id="dice" src="dice-06.svg" alt="" />
+          </div>
+          <h3 id="dice-result-label">Guess the dice value</h3>
         </div>
       </div>
-      <button id="submit-btn">Submit choice</button>
+
+      <div id="right-bottom">
+        <h1>Pick A Number</h1>
+        <div id="user-controls">
+          <div>
+            <button class="number-btn" id="btn1" onclick="setChoice(1)">
+              1
+            </button>
+            <button class="number-btn" id="btn2" onclick="setChoice(2)">
+              2
+            </button>
+            <button class="number-btn" id="btn3" onclick="setChoice(3)">
+              3
+            </button>
+          </div>
+          <div>
+            <button class="number-btn" id="btn4" onclick="setChoice(4)">
+              4
+            </button>
+            <button class="number-btn" id="btn5" onclick="setChoice(5)">
+              5
+            </button>
+            <button class="number-btn" id="btn6" onclick="setChoice(6)">
+              6
+            </button>
+          </div>
+        </div>
+        <button id="submit-btn">Submit choice</button>
+      </div>
     </div>
   </body>
 </html>

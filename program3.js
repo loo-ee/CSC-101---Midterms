@@ -3,10 +3,10 @@ let selectedItem = null;
 const homePage = document.getElementById('home-page');
 const paymentPage = document.getElementById('payment-page');
 
+// Using a list of objects to store the book details, makes it more dynamic for DOM manipulation
 const items = [
   {
-    title: `Python Crash Course, 2nd Edition: A Hands-On, Project-Based
-            Introduction to Programming 2nd Edition`,
+    title: `Python Crash Course, 2nd Edition: A Hands-On, Project-Based Introduction to Programming 2nd Edition`,
     price: 14.80,
     source: 'python-crash-course.jpg',
     availability: 'Limited',
@@ -46,6 +46,8 @@ const items = [
 
 const choiceContainer = document.getElementById('choice-container');
 
+// When the script loads, the choice container will be filled with elements of 
+// the book objects
 for (let i = 0; i < items.length; i++) {
   const newItem = document.createElement('div');
 
@@ -70,6 +72,7 @@ for (let i = 0; i < items.length; i++) {
 
 const selectButtons = document.querySelectorAll('.select-btn');
 
+// Assigning functions that are triggered when user selects a book
 selectButtons.forEach((button) => {
   button.addEventListener('click', () => {
     checkIfPressed();
@@ -77,6 +80,23 @@ selectButtons.forEach((button) => {
     showCheckout();
   })
 })
+
+// The app remembers the last item that the user had selected
+const setSelectedItem = (itemNumber) => {
+  selectedItem = itemNumber;
+}
+
+const checkIfPressed = () => {
+
+  for (let i = 1; i <= selectButtons.length; i++) {
+    if (i == selectedItem) {
+      selectButtons[i - 1].style.backgroundColor = 'green';
+    }
+    else {
+      selectButtons[i - 1].style.backgroundColor = '#457B9D';
+    }
+  }
+}
 
 const showPreview = () => {
   const book = items[selectedItem - 1];
@@ -92,8 +112,7 @@ const showPreview = () => {
   image.style.maxHeight = '500px';
 
   details.innerHTML =
-    `
-    <div class="book-details-half">
+    `<div class="book-details-half">
       <h4 class="book-details">Price: $${book.price}</h4>
       <h4 class="book-details">Status: ${book.availability}</h4>
     </div>
@@ -101,18 +120,14 @@ const showPreview = () => {
       <h4 class="book-details">Author: ${book.author}</h4>
       <h4 class="book-details">Genre: ${book.genre}</h4>
       <h4 class="book-details">Ratings: ${book.ratings}</h4>
-    </div>
-    `;
-}
-
-const setSelectedItem = (itemNumber) => {
-  selectedItem = itemNumber;
+    </div>`;
 }
 
 const showCheckout = () => {
   const foundCheckout = document.getElementById('checkout');
   const checkOutElement = document.createElement('div');
 
+  // Fool proofing for less bugs
   if (foundCheckout) return;
   if (!selectedItem) return;
 
@@ -170,9 +185,13 @@ const processPayment = () => {
   const paymentMethod = document.getElementById('payment-method');
   const foundPaymentResult = document.getElementById('payment-result');
 
+  // This prevents the receipt from being created more than once
+  // This deletes the previous receipt
   if (foundPaymentResult) paymentBody.removeChild(foundPaymentResult);
 
   paymentResult.id = 'payment-result';
+
+  // Generates a receipt from the result of the payment transaction
 
   if (sufficientBalance) {
     paymentResult.className = 'success';
@@ -280,6 +299,10 @@ const printReceipt = (moneyPaid) => {
       }
     </style>`;
 
+  // CSS is included in making a document element for the second 
+  // window in printing since a new window instance cannot read the css of 
+  // the previous window instance
+
   printWindow.document.write(text);
   printWindow.document.close();
   printWindow.print();
@@ -301,16 +324,4 @@ const removeSelectedItem = () => {
     button.style.color = '#F1FAEE';
   })
   selectedItem = null;
-}
-
-const checkIfPressed = () => {
-
-  for (let i = 1; i <= selectButtons.length; i++) {
-    if (i == selectedItem) {
-      selectButtons[i - 1].style.backgroundColor = 'green';
-    }
-    else {
-      selectButtons[i - 1].style.backgroundColor = '#457B9D';
-    }
-  }
 }

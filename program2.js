@@ -6,11 +6,14 @@ let tryIndex = 1;
 let activeButton;
 let currentGameRow = 1;
 
-const bottom = document.getElementById('bottom');
+const rightBottom = document.getElementById('right-bottom');
 const livesDisplay = document.getElementById('lives');
 const triesToWinDisplay = document.getElementById('status');
 const submitBtn = document.getElementById('submit-btn');
 const tbody = document.getElementById('tbody');
+const dice = document.getElementById('dice');
+const diceResultLabel = document.getElementById('dice-result-label');
+const rightContainer = document.getElementById('right-container');
 
 const setChoice = (input) => {
   choice = input
@@ -18,6 +21,45 @@ const setChoice = (input) => {
 
 const setDieSide = () => {
   numToGuess = Math.round(1 + Math.random() * (6 - 1));
+  rollDice();
+}
+
+const rollDice = () => {
+  dice.classList.add('shake');
+  dice.src = 'dice_guess.png';
+
+  setTimeout(() => {
+    dice.classList.remove('shake');
+  }, 1000)
+}
+
+const showDiceFace = () => {
+  const buttonToRemove = document.getElementById('submit-btn');
+  rightBottom.removeChild(buttonToRemove);
+  dice.src = `dice-0${numToGuess}.svg`;
+  diceResultLabel.innerText = 'You guessed the correct side!';
+
+  const diceResultButton = document.createElement('button');
+
+  diceResultButton.id = 'dice-result-btn';
+  diceResultButton.innerText = 'OK';
+  diceResultButton.addEventListener('click', () => {
+    submitBtn.disabled = false;
+    setDieSide();
+    diceResultLabel.innerText = 'Guess the dice value';
+    rightContainer.removeChild(diceResultButton);
+
+    const newSubmitBtn = document.createElement('button');
+
+    newSubmitBtn.id = 'submit-btn';
+    newSubmitBtn.innerText = 'Submit choice';
+    newSubmitBtn.addEventListener('click', () => {
+      checkResult();
+      removeHighlight();
+    })
+    rightBottom.append(newSubmitBtn);
+  })
+  rightContainer.append(diceResultButton);
 }
 
 const checkResult = () => {
@@ -30,9 +72,11 @@ const checkResult = () => {
   }
 
   if (numToGuess === choice) {
+    showDiceFace();
+
     correctGuess++;
-    setDieSide();
     tbody.children[currentGameRow - 1].children[tryIndex].innerHTML = '&#10004;';
+
   } else {
     lives--;
     tbody.children[currentGameRow - 1].children[tryIndex].innerHTML = '&#10006;';
@@ -79,7 +123,7 @@ const playAgain = () => {
         <button id="play-again-no" onclick="closePlayAgain()">No</button>
       </div>`;
 
-  bottom.append(addPlayAgain);
+  rightBottom.append(addPlayAgain);
 }
 
 const addGameRow = () => {
@@ -106,7 +150,7 @@ const addGameRow = () => {
 
 const closePlayAgain = () => {
   const playAgainElement = document.getElementById('play-again');
-  bottom.removeChild(playAgainElement);
+  rightBottom.removeChild(playAgainElement);
 }
 
 submitBtn.addEventListener('click', () => {
