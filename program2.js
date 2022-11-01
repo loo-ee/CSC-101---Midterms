@@ -62,11 +62,11 @@ const checkResult = () => {
 
   if (numToGuess === choice) {
     showDiceFace();
-
     correctGuess++;
     tbody.children[currentGameRow - 1].children[tryIndex].innerHTML = '&#10004;';
 
   } else {
+    rollDice();
     lives--;
     tbody.children[currentGameRow - 1].children[tryIndex].innerHTML = '&#10006;';
   }
@@ -77,9 +77,6 @@ const checkResult = () => {
   if (lives == 0) {
     triesToWinDisplay.innerText = 'You LOST!';
     tbody.children[currentGameRow - 1].children[0].style.backgroundColor = 'red';
-    lives = 3;
-    correctGuess = 0;
-    tryIndex = 1;
     playAgain();
     return
   }
@@ -87,22 +84,18 @@ const checkResult = () => {
   if (correctGuess == 3) {
     triesToWinDisplay.innerText = 'You WON!';
     tbody.children[currentGameRow - 1].children[0].style.backgroundColor = 'green';
-    lives = 3;
-    correctGuess = 0;
-    tryIndex = 1;
     playAgain();
     return
   }
 
-
   triesToWinDisplay.innerText = `Score ${3 - correctGuess} more to win!`;
   choice = null;
   tryIndex++;
-
 }
 
 const playAgain = () => {
   const addPlayAgain = document.createElement('div');
+  const diceResultButton = document.getElementById('dice-result-btn');
 
   addPlayAgain.id = 'play-again';
   addPlayAgain.innerHTML =
@@ -112,13 +105,14 @@ const playAgain = () => {
         <button id="play-again-no" onclick="closePlayAgain()">No</button>
       </div>`;
 
+  if (diceResultButton) diceResultButton.disabled = true;
   rightBottom.append(addPlayAgain);
-  submitBtn.disabled = true;
 }
 
 const addGameRow = () => {
   currentGameRow++;
 
+  const diceResultButton = document.getElementById('dice-result-btn');
   const newRow = document.createElement('tr');
 
   newRow.innerHTML =
@@ -131,7 +125,14 @@ const addGameRow = () => {
       <td></td>
     </tr>`;
 
-  submitBtn.disabled = false;
+  if (correctGuess == 3) submitBtn.disabled = true;
+  if (lives == 0) submitBtn.disabled = false;
+  if (diceResultButton) diceResultButton.disabled = false;
+
+  lives = 3;
+  correctGuess = 0;
+  tryIndex = 1;
+
   tbody.append(newRow);
   livesDisplay.innerText = 'Lives left: 3';
   triesToWinDisplay.innerText = 'Score 3 more to win!';
