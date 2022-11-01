@@ -34,8 +34,7 @@ const rollDice = () => {
 }
 
 const showDiceFace = () => {
-  const buttonToRemove = document.getElementById('submit-btn');
-  rightBottom.removeChild(buttonToRemove);
+  submitBtn.disabled = true;
   dice.src = `dice-0${numToGuess}.svg`;
   diceResultLabel.innerText = 'You guessed the correct side!';
 
@@ -48,16 +47,6 @@ const showDiceFace = () => {
     setDieSide();
     diceResultLabel.innerText = 'Guess the dice value';
     rightContainer.removeChild(diceResultButton);
-
-    const newSubmitBtn = document.createElement('button');
-
-    newSubmitBtn.id = 'submit-btn';
-    newSubmitBtn.innerText = 'Submit choice';
-    newSubmitBtn.addEventListener('click', () => {
-      checkResult();
-      removeHighlight();
-    })
-    rightBottom.append(newSubmitBtn);
   })
   rightContainer.append(diceResultButton);
 }
@@ -83,7 +72,7 @@ const checkResult = () => {
   }
 
   livesDisplay.innerText = `Lives left: ${lives}`;
-  canPlay();
+  if (lives <= 0) submitBtn.disabled = true;
 
   if (lives == 0) {
     triesToWinDisplay.innerText = 'You LOST!';
@@ -124,6 +113,7 @@ const playAgain = () => {
       </div>`;
 
   rightBottom.append(addPlayAgain);
+  submitBtn.disabled = true;
 }
 
 const addGameRow = () => {
@@ -141,10 +131,10 @@ const addGameRow = () => {
       <td></td>
     </tr>`;
 
+  submitBtn.disabled = false;
   tbody.append(newRow);
   livesDisplay.innerText = 'Lives left: 3';
   triesToWinDisplay.innerText = 'Score 3 more to win!';
-  canPlay();
   closePlayAgain();
 }
 
@@ -185,11 +175,6 @@ const checkIfPressed = () => {
     }
   }
   return selectedBtn;
-}
-
-const canPlay = () => {
-  if (lives > 0) submitBtn.disabled = false;
-  else submitBtn.disabled = true;
 }
 
 setDieSide();
