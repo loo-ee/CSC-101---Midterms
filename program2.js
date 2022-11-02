@@ -15,15 +15,18 @@ const dice = document.getElementById('dice');
 const diceResultLabel = document.getElementById('dice-result-label');
 const rightContainer = document.getElementById('right-container');
 
+// Function to remember the last user input
 const setChoice = (input) => {
   choice = input
 }
 
+// Function to randomly choose a dice side to guess
 const setDieSide = () => {
   numToGuess = Math.round(1 + Math.random() * (6 - 1));
   rollDice();
 }
 
+// Shake animations for dice
 const rollDice = () => {
   dice.classList.add('shake');
   dice.src = 'dice_guess.png';
@@ -33,6 +36,7 @@ const rollDice = () => {
   }, 1000)
 }
 
+// If user guesses a dice side, an image of the dice side will show
 const showDiceFace = () => {
   submitBtn.disabled = true;
   dice.src = `dice-0${numToGuess}.svg`;
@@ -51,10 +55,12 @@ const showDiceFace = () => {
   rightContainer.append(diceResultButton);
 }
 
+// Function to check if the user guessed the correct dice side 
 const checkResult = () => {
-  console.log(choice)
-  console.log(numToGuess)
+  console.log(`User input: ${choice}`)
+  console.log(`Dice side to guess: ${numToGuess}`)
 
+  // Guarded clause for input validation
   if (!choice) {
     console.log('enter choice')
     return;
@@ -93,6 +99,7 @@ const checkResult = () => {
   tryIndex++;
 }
 
+// Function that is called when the user won or lost the game
 const playAgain = () => {
   const addPlayAgain = document.createElement('div');
   const diceResultButton = document.getElementById('dice-result-btn');
@@ -109,6 +116,7 @@ const playAgain = () => {
   rightBottom.append(addPlayAgain);
 }
 
+// If user wants to play another game, this function is called
 const addGameRow = () => {
   currentGameRow++;
 
@@ -125,6 +133,7 @@ const addGameRow = () => {
       <td></td>
     </tr>`;
 
+  // Function then resets the points and lives of the player
   if (correctGuess == 3) submitBtn.disabled = true;
   if (lives == 0) submitBtn.disabled = false;
   if (diceResultButton) diceResultButton.disabled = false;
@@ -139,28 +148,19 @@ const addGameRow = () => {
   closePlayAgain();
 }
 
+// Closes the dialogue box when player wants to quit
 const closePlayAgain = () => {
   const playAgainElement = document.getElementById('play-again');
   rightBottom.removeChild(playAgainElement);
+  diceResultLabel.innerText = 'Thank you for playing!';
 }
 
-submitBtn.addEventListener('click', () => {
-  checkResult();
-  removeHighlight();
-})
-
-const numberButtons = document.querySelectorAll('.number-btn');
-
-for (let i = 0; i < numberButtons.length; i++) {
-  numberButtons[i].addEventListener('click', () => {
-    activeButton = checkIfPressed();
-  })
-}
-
+// Function responsible for removing the color of the last pressed button
 const removeHighlight = () => {
   document.getElementById(`btn${activeButton}`).style.backgroundColor = 'white';
 }
 
+// Function that changes the color of the last pressed button
 const checkIfPressed = () => {
   let selectedBtn;
 
@@ -178,4 +178,21 @@ const checkIfPressed = () => {
   return selectedBtn;
 }
 
+// Event listener that calls methods when the submit button is pressed
+submitBtn.addEventListener('click', () => {
+  checkResult();
+  removeHighlight();
+})
+
+const numberButtons = document.querySelectorAll('.number-btn');
+
+// Function that puts event listeners to all of the buttons and 
+// retrieves the last pressed button
+for (let i = 0; i < numberButtons.length; i++) {
+  numberButtons[i].addEventListener('click', () => {
+    activeButton = checkIfPressed();
+  })
+}
+
+// Randomly chooses a dice side to guess at the start of the game
 setDieSide();
