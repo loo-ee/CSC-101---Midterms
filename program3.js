@@ -98,6 +98,7 @@ const checkIfPressed = () => {
   }
 }
 
+// If user selects a book, a preview of the book then shows
 const showPreview = () => {
   const book = items[selectedItem - 1];
   const title = document.getElementById('book-preview-title');
@@ -123,6 +124,8 @@ const showPreview = () => {
     </div>`;
 }
 
+// If user selects a book, a hovering checkout div pops up
+// Under the books section
 const showCheckout = () => {
   const foundCheckout = document.getElementById('checkout');
   const checkOutElement = document.createElement('div');
@@ -139,6 +142,8 @@ const showCheckout = () => {
   homePage.append(checkOutElement);
 }
 
+// If user presses the checkout button, a hovering div pops up for
+// user to input their payment
 const checkOut = () => {
   if (selectedItem == 4) selectedItem = Math.round(1 + Math.random() * (3 - 1));
 
@@ -176,6 +181,7 @@ const checkOut = () => {
   paymentPage.append(paymentElement);
 }
 
+// Function responsible for the validation of the payment
 const processPayment = () => {
   const moneyPaid = Number(document.getElementById('money-input-field').value);
   const book = items[selectedItem - 1];
@@ -223,6 +229,8 @@ const processPayment = () => {
   paymentBody.append(paymentResult);
 }
 
+// If user wants to get a receipt, a new windows pops up with the contents of the 
+// book selected and the receipt
 const printReceipt = (moneyPaid) => {
   const book = items[selectedItem - 1];
   const printWindow = window.open('', '', 'height=700', 'width=600');
@@ -305,9 +313,12 @@ const printReceipt = (moneyPaid) => {
 
   printWindow.document.write(text);
   printWindow.document.close();
+
+  // This method shows a printing section
   printWindow.print();
 }
 
+// If user presses the red button in the upper right of the checkout section
 const removePayment = () => {
   const paymentElement = document.getElementById('payment');
   const checkOutElement = document.getElementById('checkout');
@@ -318,6 +329,8 @@ const removePayment = () => {
   removeSelectedItem();
 }
 
+// Function that resets the selected book and for the 
+// resetting of the buttons' colors
 const removeSelectedItem = () => {
   selectButtons.forEach((button) => {
     button.style.backgroundColor = '#457B9D';
